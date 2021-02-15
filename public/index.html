@@ -8,10 +8,45 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+  <div id="eventos">
+    
+    <input type="text"
+       id="inputText"
+       @keydown="keyDown"
+       :style="[{ 'fontSize': fontSize+'px'}]"
+    ><br>
+
+    <button class="btn btn-outline-dark" v-on:click="fontSize++" >Incrementar</button>
+    <button class="btn btn-outline-dark" v-on:click="fontSize--" >Decrementar</button>
+
+  </div>
+   <script>
+     const app=new Vue({
+       el:'#eventos',
+       data: {
+         fontSize: 40,
+       },
+       methods:{
+         keyDown(event){
+           input=document.getElementById('inputText');
+           console.log(event.which)
+
+           if ((event.which) >= 65 && (event.which) <=90){
+             input.style.backgroundColor = "green";
+           }
+           else if((event.which) >=48 && (event.which) <=57){
+             input.style.backgroundColor= "red";
+           }
+           else{
+             input.style.backgroundColor="yellow";
+           }
+         }
+       }
+     })
+   </script>
+
+
+
+
   </body>
 </html>
